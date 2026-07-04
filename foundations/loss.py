@@ -9,8 +9,11 @@ class Solution:
         # y_pred: predicted probabilities
         # Hint: add a small epsilon (1e-7) to y_pred to avoid log(0)
         # return round(your_answer, 4)
-        l = -1/len(y_true)*(y_true*np.log(y_pred + 1e-7) + (1-y_true)*np.log(1-y_pred + 1e-7))
-        return round(np.sum(l), 4)
+        loss = (-1/len(y_true))*np.sum(y_true*(np.log(y_pred + 1e-7)) + (1-y_true)*(np.log(1-y_pred-1e-7)))
+        return round(loss, 4)
+
+
+        
         
 
     def categorical_cross_entropy(self, y_true: NDArray[np.float64], y_pred: NDArray[np.float64]) -> float:
@@ -18,5 +21,6 @@ class Solution:
         # y_pred: predicted probabilities (shape: n_samples x n_classes)
         # Hint: add a small epsilon (1e-7) to y_pred to avoid log(0)
         # return round(your_answer, 4)
-        l = -1/len(y_true)*(y_true*np.log(y_pred + 1e-7))
-        return round(np.sum(l), 4)
+        loss = -1/np.shape(y_true)[0]*(np.sum(y_true*(np.log(y_pred + 1e-7))))
+        return round(loss, 4)
+
