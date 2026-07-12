@@ -14,11 +14,12 @@ class Solution:
         layer = x
         for i in range(len(weights)):
             z = np.dot(layer, np.array(weights[i])) + biases[i]
-            z = np.maximum(z, np.zeros(z.shape))
+            if (i < len(weights)-1):
+                z = np.maximum(z, np.zeros(z.shape))
             layer = z
 
         # to form final layer (output)
         
 
-        return z
+        return np.round(z, 5)
         
